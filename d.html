@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+
+	<head>[]
+		<meta charset="UTF-8" />
+		<title>个人简历</title>
+		<link rel="stylesheet" href="css/base.css" />
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+			
+			html {
+				width: 100%;
+				height: 100%;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				background: url(img/bg.jpg) no-repeat;
+				background-size: 100% 100%;
+				overflow: hidden;
+			}
+			
+			#box {
+				width: 100%;
+				height: 100%;
+				font-size: 100px;
+				text-shadow: 2px 2px 5px #424200, 2px 2px 5px #5b5b00, 2px 2px 5px #737300, 2px 2px 5px #8c8c00, 2px 2px 5px #a6a600, 2px 2px 5px #c4c400, 2px 2px 5px #e1e100, 2px 2px 5px #f9f900, 2px 2px 5px #ffff37;
+				color: red;
+				text-align: center;
+			}
+			
+			#run {
+				animation: run 3s forwards infinite linear;
+			}
+			
+			img {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			@keyframes run {
+				0% {
+					left: 140px;
+					top: 140px;
+				}
+				50% {
+					left: 140px;
+					top: 100px;
+				}
+				100% {
+					left: 140px;
+					top: 140px;
+				}
+			}
+			
+			.all {
+				width: 358px;
+				height: 577px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-left: -179px;
+				margin-top: -280px;
+				background: url(img/w.jpg) no-repeat;
+				background-size: 100% 100% ;
+			}
+			
+			.luc {
+				width: 100%;
+				height: 70px;
+				background: rgba(0, 0, 0, .5);
+				margin-top: 80px;
+				font-size: 26px;
+				color: #fff;
+			}
+			
+			.luc img {
+				width: 60px;
+				height: 60px;
+				border: 1px solid #fff;
+				margin-left: 9px;
+			}
+			
+			.luc ul li {
+				float: left;
+				width: 16px;
+				height: 16px;
+				background: url(img/xx.png);
+				background-size: 100% 100%;
+			}
+			
+			.tab {
+				width: 100%;
+				height: 427px;
+				overflow: hidden;
+			}
+			
+			.tab ul {
+				width: 100%;
+				height: 27px;
+			}
+			
+			.tab ul li {
+				width: 119px;
+				background: rgba(0, 0, 255,.5);
+				height: 100%;
+				text-align: center;
+
+			}
+			
+			.tab ul li a {
+				width: 100%;
+				height: 100%;
+				display: block;
+				color: #fff;
+				font-size: 14px;
+				padding-top: 5px;
+			}
+			.tab div {
+				width: 100%;
+				height: 399px;
+				display: none;
+			}
+			.tab div:nth-child(2) p{font-size: 16px; line-height: 30px;}
+			.tab div:nth-child(4) p{font-size: 14px; color: blue; line-height: 30px;}
+			ul li.on {
+				background: rgba(0, 0, 0,1);
+			}
+			#show{display: none;}
+		</style>
+
+	</head>
+
+	<body>
+		<div id="box"><img src="img/bg-1.gif" id="oimg" /><i style="position: absolute; left: 50%; top: 50%; color: #fff;">欢迎来到个人简历</i></div>
+		<section>
+			<div class="all" id="show">
+				<div class="luc">
+					<img src="img/cat4.jpg" alt="" class="fl" />
+					<i>い吴琼っ</i>
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<div class="tab" id="box1">
+					<ul id="tab_top">
+						<li class="fl on">
+							<a href="javascript:;">资料</a>
+						</li>
+						<li class="fl">
+							<a href="javascript:;">相册</a>
+						</li>
+						<li class="fl">
+							<a href="javascript:;">技能</a>
+						</li>
+					</ul>
+					<div style="display: block;">
+						<p>姓名：吴琼</p>
+						<p>年龄：**</p>
+						<p>个人说明：我.不善言辞</p>
+						<p>邮箱：18210280176@136.com</p>
+						<p>电话：18210280176</p>
+						<p>国籍：中国</p>
+						<p>现居地址：北京，昌平</p>
+					</div>
+					<div>
+						<img src="img/0.jpg" alt="" />
+						<img src="img/0.jpg" alt="" />
+						<img src="img/0.jpg" alt="" />
+						<img src="img/0.jpg" alt="" />
+						<img src="img/0.jpg" alt="" />
+						<img src="img/0.jpg" alt="" />
+					</div>
+					<div>
+						<p>· 熟悉 CSS3和HTML5的新属性及元素，并且能够完成CSS3动画；</p>
+						<p>· 熟练 手写原生JS，实现页面动态效果；</p>
+						<p>· 掌握 JS面向对象开发原理和闭包原理；</p>
+						<p>· 熟练 使用jQuery及其插件完成网页开发；</p>
+						<p>· 掌握 vue框架的应用；</p>
+						<p>· 熟悉 Ajax原理，以及sjonp的跨域交互；</p>
+						<p>· 熟悉 IE Firefox Chrome等不同浏览器的兼容处理，符合W3C标准，兼容多种浏览器的前端页面代码；</p>
+						<p>· 熟悉 MVC 架构模式；</p>
+						<p>· 了解  模块化开发，AMD/CMD等开源模块化规范；</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script>
+			window.onload = function() {
+				var oBox = document.getElementById('box');
+				var oUl = document.getElementById('tab_top');
+				var aLi = oUl.children;
+				var oBox1=document.getElementById('box1');
+				var aDiv=oBox1.getElementsByTagName('div');
+				var oS=document.getElementById('show');
+				setTimeout(function(){
+					oS.style.display='block';
+				},3000)
+				for (var i=0;i<aLi.length;i++) {
+					aLi[i].index=i
+					aLi[i].onclick=function(){
+						for(var i=0;i<aLi.length;i++){
+							aLi[i].className='fl'
+							aDiv[i].style.display='none'
+						}
+						this.className='on fl';
+						aDiv[this.index].style.display='block'
+					}
+				}
+				aLi[1].onclick=function(){
+					alert('暂时没有权限');
+					for(var i=0;i<aLi.length;i++){
+						aLi[i].className='fl'
+						aDiv[i].style.display='none'
+					}
+					aLi[0].className='on fl'
+					aDiv[0].style.display='block'
+				}
+				setTimeout(function() {
+					oBox.innerHTML = '';
+					oBox.innerHTML = '个人简历';
+					var oPr = document.createElement('div');
+					oPr.style.width = '100px';
+					oPr.style.height = '100px';
+					oPr.style.borderRadius = '50%';
+					oPr.style.background = 'red';
+					oPr.style.position = 'absolute';
+					oPr.style.left = '140px';
+					oPr.style.top = '140px';
+					oPr.innerHTML = '<img src="img/1.jpg" style="width: 100%; height: 100%; border-radius: 50%;"/>';
+					oPr.id = 'run'
+					oBox.appendChild(oPr);
+				}, 2000);
+				
+			}
+		</script>
+	</body>
+
+</html>

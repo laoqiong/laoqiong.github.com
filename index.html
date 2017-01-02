@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>个人站</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<style>
+			html {
+				width: 100%;
+				height: 100%;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				background: url(img/bg.jpg) no-repeat;
+				background-size: 100% 100%;
+				overflow: hidden;
+			}
+			
+			#box {
+				width: 500px;
+				height: 500px;
+				position: relative;
+				margin: 100px auto;
+			}
+			
+			#box div {
+				position: absolute;
+				left: 200px;
+				top: 200px;
+				transition: 0.1s cubic-bezier(0.4, 0, 1, 1);
+			}
+			
+			#outside {
+				width: 100px;
+				height: 100px;
+				background: rgba(50, 50, 50, 0.7);
+				border-radius: 50%;
+			}
+			
+			#center {
+				width: 100px;
+				height: 100px;
+				background: rgba(100, 100, 100, 0.9);
+				border-radius: 50%;
+			}
+			
+			#inside {
+				overflow: hidden;
+				width: 100px;
+				height: 100px;
+				text-align: center;
+			}
+			
+			#inside a {
+				font-size: 30px;
+				font-family: "微软雅黑";
+				font-weight: 700;
+				line-height: 100px;
+				color: #000;
+				width: 100%;
+				height: 100%;
+				z-index: 999;
+			}
+			
+			#pbar {
+				width: 500px;
+				height: 30px;
+				margin: 200px auto;
+				position: relative;
+				overflow: hidden;
+				border: 1px solid #000;
+			}
+			#pbar o{width: 100% ; height: 100%; text-align: center; line-height: 100%;}
+
+			#bar {
+				width: 500px;
+				height: 30px;
+				background: -webkit-repeating-linear-gradient(-45deg, red 0, red 20px, blue 20px, blue 40px);
+				transition: 1s linear;
+				position: absolute;
+				left: -500px;
+				top: 0;
+			}		
+			#content {
+				position: absolute;
+				width: 500px;
+				height: 500px;
+				border-radius: 50%;
+				display: none;
+				top: 200px;
+				left: 200px;
+			}
+			
+			#content li {
+				width: 100px;
+				height: 100px;
+				background: url(img/2.jpg);
+				background-size: 100%;
+				border-radius: 50%;
+				position: absolute;
+			}
+			
+			.on {
+				box-shadow: 0px 0px 10px #333, 0px 0px 5px #ccc, 0px 0px 20px 20px #fff;
+			}
+			
+		</style>
+		<script src="js/move2.js"></script>
+		<script>
+	window.onload = function() {
+		var oBox=document.getElementById('box')
+		var oOut=document.getElementById('outside');
+		var oCen=document.getElementById('center');
+		var oIn=document.getElementById('inside');
+		var oUl=document.getElementById('content')
+		var iNow=100
+		var iNowT=100
+		setInterval(function(){
+			iNow=iNow+20
+			if (iNow>200) {
+				iNow=100
+			}
+			iNowT=iNowT+10
+			if (iNowT==160) {
+				iNowT=100
+			}
+			oOut.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+			oOut.style.width=iNow+'px';
+			oOut.style.height=iNow+'px';
+			oOut.style.marginLeft=-(iNow-100)/2+'px';
+			oOut.style.marginTop=-(iNow-100)/2+'px';
+			oCen.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+			oCen.style.width=iNowT+'px';
+			oCen.style.height=iNowT+'px';
+			oCen.style.marginLeft=-(iNowT-100)/2+'px';
+			oCen.style.marginTop=-(iNowT-100)/2+'px';
+		},100)
+		
+		var N=6;
+		var count = 0
+		//点击创建li 让li散开
+		var bOk=true;
+		
+		for(var i = 0; i <N; i++) {
+					//每次循环创建一个img标签
+					var oImg = new Image();
+					oImg.onload = function() {
+							count++;
+							//console.log(count)
+							if(count == N) {
+								show()
+							}
+						}
+						//为img标签添加路径
+					oImg.src = 'img/'+count+'.jpg'; 
+				}
+		function show (){
+			var bOk=true
+			oIn.addEventListener('click',function(){
+			if (bOk) {
+				bOk=false 
+				oUl.style.display='block';
+				for(var i=0;i<N;i++){
+					var oLi=document.createElement('li')
+					oLi.style.background='url(img/'+(i+1)+'.jpg)';
+					oLi.style.backgroundSize='100% 100%';
+					oLi.style.left='0';
+					oLi.style.top='0'
+					oUl.appendChild(oLi)
+				}
+				
+				
+				var aLi=oUl.children
+				//把ali放在不同的位置   成圆的位置散开
+				var arr=['a.html','b.html','c.html','d.html','e.html','f.html']
+				var radius=500/2
+				var d=360/aLi.length;
+				var ahd=d*Math.PI/180;
+				//运动开
+				
+				for(var i=0;i<aLi.length;i++){
+					var x=Math.sin((ahd*i))*radius;
+					var y=Math.cos((ahd*i))*radius;
+						move(aLi[i],{
+							left:x,
+							top:y
+						});
+					
+					aLi[i].innerHTML='<a href="'+arr[i]+'" style="width:100px; height:100px; display:block"></a>'
+					aLi[i].addEventListener('mousemove',function(){
+						for(var i=0;i<aLi.length;i++){
+								aLi[i].className='';
+						}
+						this.className='on';
+					},false)
+				}
+				var aLi=oUl.children;
+				for(var i=0;i<aLi.length;i++){
+					
+				}
+			}else{
+				oUl.innerHTML=''
+				oUl.style.display='none'
+				bOk=true
+			}
+			//var bOk=true;
+		},false)
+		}
+		
+	}
+	//给li添加小的功能  随机数
+	function rnd(n,m){
+		return Math.floor(Math.random()*(m-n)+n)
+	}
+		</script>
+
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="outside"></div>
+			<div id="center"></div>
+			<div id="inside">
+				<a href="javascript:;">请点击</a>
+			</div>
+			<ul id="content">
+				
+			</ul>
+		</div>
+
+	</body>
+
+</html>

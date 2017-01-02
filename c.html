@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>无标题文档</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html {
+				width: 100%;
+				height: 100%;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				background: url(img/bg.jpg) no-repeat;
+				background-size: 100% 100%;
+				overflow: hidden;
+			}
+			
+			.box {
+				width: 700px;
+				height: 400px;
+				margin: 100px auto;
+				background: url(img/0.jpg);
+				position: relative;
+				box-shadow: 0px 0px 5px 5px #fff,0px 0px 5px 5px #F0F0F0,0px 0px 5px 5px #f00;
+			}
+			
+			.l {
+				width: 50%;
+				height: 100%;
+				background: url(img/0.jpg);
+				background-size: 200% 100%;
+			}
+			
+			.page {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 50%;
+				height: 100%;
+				transform-origin: left center;
+				transform: perspective(800px) rotateY(0deg);
+				transform-style: preserve-3d;
+				z-index: 1;
+			}
+			
+			.page span {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			.page .front {
+				background: url(img/0.jpg) right 0;
+				transform: translateZ(1px);
+				background-size: 200% 100%;
+			}
+			
+			.page .back {
+				background: url(img/1.jpg);
+				transform: scale(-1, 1);
+				background-size: 200% 100%;
+			}
+			
+			.r {
+				width: 50%;
+				height: 100%;
+				background: url(img/1.jpg) right 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+				background-size: 200% 100%;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var oDiv = document.querySelector('.box');
+				var oPage = document.querySelector('.page');
+				var oL = document.querySelector('.l');
+				var oR = document.querySelector('.r');
+				var oF = document.querySelector('.front');
+				var oB = document.querySelector('.back');
+
+				var iNow = 0;
+				oDiv.onclick = function() {
+					oPage.style.transition = '1s';
+					oPage.style.transform = 'perspective(800px) rotateY(-180deg)';
+				};
+
+				//监测过渡完毕
+				oPage.addEventListener('transitionend', function() {
+					iNow++;
+					oPage.style.transition = 'none';
+					oPage.style.transform = 'perspective(800px) rotateY(0deg)';
+
+					oL.style.backgroundImage = 'url(img/' + iNow % 6 + '.jpg)';
+					oF.style.backgroundImage = 'url(img/' + iNow % 6 + '.jpg)';
+					oR.style.backgroundImage = 'url(img/' + (iNow + 1) % 6 + '.jpg)';
+					oB.style.backgroundImage = 'url(img/' + (iNow + 1) % 6 + '.jpg)';
+				}, false);
+
+			};
+		</script>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="l"></div>
+			<div class="page">
+				<span class="front"></span>
+				<span class="back"></span>
+			</div>
+			<div class="r"></div>
+		</div>
+	</body>
+
+</html>

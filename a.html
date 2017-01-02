@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html {
+				width: 100%;
+				height: 100%;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				background: url(img/bg.jpg) no-repeat;
+				background-size: 100% 100%;
+				overflow: hidden;
+			}
+			
+			.box {
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.5);
+				position: relative;
+			}
+			
+			#box1{
+				width: 100%;
+				height: 225px;
+				position: absolute;
+				background: #E0E0E0;
+				padding-top: 25px;
+				display: none;
+			}
+			
+			img {
+				width: 200px;
+				height: 200px;
+				float: left;
+				margin-right: 25px;
+				box-shadow: 5px 5px 5px 5px #63B8FF;
+			}
+			
+			#pbar {
+				width: 500px;
+				height: 30px;
+				background: #ccc;
+				margin: 50px auto;
+				position: relative;
+			}
+			
+			#bar {
+				width: 30px;
+				height: 30px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script src="js/move.js"></script>
+		<script>
+			window.onload = function() {
+				var oBox1 = document.getElementById('box1');
+				var oBar = document.getElementById('bar');
+				var oP=document.getElementById('pbar')
+				//console.log(oBox1.innerHTML)
+				var count = 0;
+				var bOk = false;				
+				var count = 0;
+				//循环加载图片
+				for(var i = 0; i < 9; i++) {
+					//每次循环创建一个img标签
+					var oImg = new Image();
+					oImg.onload = function() {
+							count++;
+							oBar.style.width = count / 9 * 100 + '%';
+							//console.log(count)
+							if(count == 9) {
+								oBox1.style.display='block';
+								oP.innerHTML=''
+								oP.id=''
+								oBox1.innerHTML='<img src="img/cat1.jpg" alt="" />'+
+												'<img src="img/cat2.jpg" alt="" />'+
+												'<img src="img/cat3.jpg" alt="" />'+
+												'<img src="img/cat4.jpg" alt="" />'+
+												'<img src="img/cat5.jpg" alt="" />'+
+												'<img src="img/cat6.jpg" alt="" />'+
+												'<img src="img/cat7.jpg" alt="" />'+
+												'<img src="img/cat8.jpg" alt="" />'+
+												'<img src="img/cat9.jpg" alt="" />'
+								show()
+							}
+						}
+						//为img标签添加路径
+					oImg.src = 'img/'+count+'.jpg'; 
+				}
+				//show()
+				function show() {
+					oBox1.innerHTML += oBox1.innerHTML;
+					var aImg = oBox1.getElementsByTagName('img');
+					oBox1.style.width = aImg[0].offsetWidth * aImg.length + 450 + 'px';
+					var l = document.documentElement.clientHeight
+					move(oBox1, {
+						top: l / 2 - 150
+					}, {
+						type: Tween.Bounce.easeOut
+					})
+					setInterval(function() {
+						var l = oBox1.offsetLeft + 10;
+						if(l > 0) {
+							l = -oBox1.offsetWidth / 2
+						}
+						oBox1.style.left = l + 'px';
+					}, 30)
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+
+		<div id="box">
+			<div id="pbar">
+				<div id="bar"></div>
+			</div>
+			<div id="box1">
+				
+			</div>
+		</div>
+	</body>
+
+</html>
